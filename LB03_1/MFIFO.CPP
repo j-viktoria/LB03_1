@@ -1,8 +1,10 @@
-#include "mfifo.h"
+#include "MFIFO.H"
 #include <iostream>
-//typedef int mytype;
+typedef int mytype;
 
-//namespace FIFO
+namespace FIFO
+{
+
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -13,18 +15,18 @@ Item::Item()
     next = nullptr;
 }
 
-int Item:: getData()
+int &Item:: getData()
 {
     return data;
 }
-    Item* Item::getPrev()
-    {
-        return prev
-    }
-    Item* Item::getNext()
-    {
-        return next;
-    }
+Item *&Item::getPrev()
+{
+    return prev;
+}
+Item *&Item::getNext()
+{
+    return next;
+}
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,9 +47,9 @@ void MFifo::Clear()
 {
     while(items)
     {
-        Item* item = end;
+        Item *item = end;
 
-        if (item -> getPrev())
+        if(item -> getPrev())
         {
             item -> getPrev() -> getNext() = 0;
             end = item -> getPrev();
@@ -67,12 +69,12 @@ void MFifo::Clear()
 
 void MFifo::PutItem(const int data)
 {
-    Item* item = new Item();
+    Item *item = new Item();
 
     item -> getData() = data;
     item -> getPrev() = 0;
 
-    if (items)
+    if(items)
     {
         item -> getNext() = begin;
         begin -> getPrev() = item;
@@ -87,45 +89,48 @@ void MFifo::PutItem(const int data)
     items ++;
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- int MFifo::GetItem()
+int MFifo::GetItem()
 {
-    if (!items)  return 0;
+    if(!items)  return 0;
 
-    Item* item = end;
+    Item *item = end;
     return  item ->getData();
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- int MFifo::PeekItem(const int index)
+int MFifo::PeekItem(const int index)
 {
-    if (items <= index)  return 0;
+    if(items <= index)  return 0;
 
-    Item* item = end;
-    for (unsigned int i = 0; i < index; i++)   item = item->prev;
+    Item *item = end;
+
+    for(unsigned int i = 0; i < index; i++)   item = item->prev;
+
     return item -> data;
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- int MFifo::GetItems()
+int MFifo::GetItems()
 {
     return items;
 }
- void MFifo:: massItems(items)
- {
-     mytype *curElement;
-     numElements = items;
-     int *a=new int[items];
+void MFifo:: massItems(items)
+{
+    mytype *curElement;
+    numElements = items;
+    int *a = new int[items];
 
-            while(numElements)
-            {
-                int i=0;
-                //*curElement=Fifo->PeekItem((int)numElements-1);
-                *curElement=PeekItem((int)numElements-1);
-                //cout<<*curElement<<endl;
-                a[i]=*curElement;
-                numElements--;
-                i++;
-            }
+    while(numElements)
+    {
+        int i = 0;
+        //*curElement=Fifo->PeekItem((int)numElements-1);
+        *curElement = PeekItem((int)numElements - 1);
+        //cout<<*curElement<<endl;
+        a[i] = *curElement;
+        numElements--;
+        i++;
+    }
 
 
- }
+}
 
+}
 

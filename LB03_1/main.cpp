@@ -1,7 +1,7 @@
 #include <iostream>
-#include "mfifo.h"
+#include "MFIFO.H"
 using namespace std;
-//using namespace FIFO;
+using namespace FIFO;
 //typedef int mytype;
 int main()
 {
