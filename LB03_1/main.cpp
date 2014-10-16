@@ -14,6 +14,7 @@ int main()
     int *curElement;
     int numElements;
     int numElement;
+    int n = Fifo->GetItems();
     while(run)
     {
         switch(num_operation)
@@ -75,8 +76,14 @@ int main()
             break;
         case 6:
 
-            cout<<"Sorry :("<<endl;
 
+            int *a;
+            *a=Fifo->massItems1();
+            //cout<<"Sorry :("<<endl;
+
+            Sort(a,n);
+            //Sort( *a, items);
+            num_operation=0;
             break;
 
 
