@@ -133,7 +133,7 @@ void MFifo:: massItems()
 
 }
 
-}
+
 
 
 int MFifo:: massItems1()
@@ -231,3 +231,4 @@ void Sort(int*a,int n)
     }
 }
 
+}
